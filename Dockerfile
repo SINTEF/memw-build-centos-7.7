@@ -11,13 +11,13 @@ RUN yum update -y && \
 RUN yum install -y http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm && \
     yum install -y git
 
-SHELL ["scl", "enable", "devtoolset-7", "bash"]
-
-RUN wget http://repo.continuum.io/miniconda/Miniconda3-3.7.0-Linux-x86_64.sh -O ~/miniconda.sh \
+RUN source scl_source enable devtoolset-7 && \
+    wget http://repo.continuum.io/miniconda/Miniconda3-3.7.0-Linux-x86_64.sh -O ~/miniconda.sh \
     && bash ~/miniconda.sh -b -p $HOME/miniconda
 ENV PATH /root/miniconda/bin:$PATH
 
-RUN git clone -b v5.6.3 --depth 1 https://code.qt.io/qt/qt5.git \
+RUN source scl_source enable devtoolset-7 && \
+    git clone -b v5.6.3 --depth 1 https://code.qt.io/qt/qt5.git \
     && cd qt5 \
     && perl init-repository \
     && ./configure -opensource -confirm-license -no-xcb -skip qtconnectivity \
@@ -35,7 +35,8 @@ RUN git clone -b v5.6.3 --depth 1 https://code.qt.io/qt/qt5.git \
     && rm -rf qt5
 ENV PATH /usr/local/Qt-5.6.3/bin:$PATH
 
-RUN wget https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz \
+RUN source scl_source enable devtoolset-7 && \
+    wget https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz \
     && tar xf boost_1_65_1.tar.gz \
     && echo "a13de2c8fbad635e6ba9c8f8714a0e6b4264b60a29b964b940a22554705b6b60  boost_1_65_1.tar.gz" | sha256sum -c --quiet \
     && rm boost_1_65_1.tar.gz \
@@ -46,7 +47,8 @@ RUN wget https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.
     && rm -rf boost_1_65_1
 ENV BOOST_INCLUDEDIR=/usr/local/include
 
-RUN wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz \
+RUN source scl_source enable devtoolset-7 && \
+    wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz \
     && tar xf cmake-3.10.2.tar.gz \
     && rm cmake-3.10.2.tar.gz \
     && cd cmake-3.10.2 \
@@ -56,7 +58,8 @@ RUN wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz \
     && cd .. \
     && rm -rf cmake-3.10.2
 
-RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz \
+RUN source scl_source enable devtoolset-7 && \
+    wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz \
     && tar xf release-1.8.0.tar.gz \
     && rm release-1.8.0.tar.gz \
     && cd googletest-release-1.8.0 \
