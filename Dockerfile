@@ -5,7 +5,7 @@ RUN yum update -y && \
     yum --enablerepo=extras install -y epel-release && \
     yum install -y gcc gcc-c++ gcc-gfortran make wget mesa-libGL mesa-libGL-devel && \
     yum install -y centos-release-scl && \
-    yum install devtoolset-7-gcc*
+    yum install -y devtoolset-7-gcc*
 
 # Install a newer git
 RUN yum install -y http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm && \
