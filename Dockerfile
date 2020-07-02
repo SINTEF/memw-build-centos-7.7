@@ -3,7 +3,7 @@ FROM centos:7.7.1908
 # Update the package manager and enable extended repositories
 RUN yum update -y && \
     yum --enablerepo=extras install -y epel-release && \
-    yum install -y gcc gcc-c++ gcc-gfortran make wget mesa-libGL mesa-libGL-devel && \
+    yum install -y gcc gcc-c++ gcc-gfortran make wget mesa-libGL mesa-libGL-devel bzip2 && \
     yum install -y centos-release-scl && \
     yum install -y devtoolset-7-gcc*
 
