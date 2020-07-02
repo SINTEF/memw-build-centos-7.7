@@ -1,4 +1,4 @@
-FROM centos:7.7
+FROM centos:7.7.1908
 
 # Update the package manager and enable extended repositories
 RUN yum update -y && \
