@@ -19,7 +19,7 @@ jobs:
       name: Build & push Docker image
       with:
         image: sintef/memw-build-centos-7.7
-        tag: v1
+        tag: v2
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKERHUB_USERNAME }}
